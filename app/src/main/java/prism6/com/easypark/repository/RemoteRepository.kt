@@ -1,19 +1,20 @@
-package prism6.com.infiniteimgur.repository
+package prism6.com.easypark.repository
 
 import android.util.Log
 import dagger.Module
-import prism6.com.infiniteimgur.mApplication
+import prism6.com.easypark.component.DaggerRepositotyComponent
 import prism6.com.infiniteimgur.network.APIService
-import prism6.com.infiniteimgur.network.Header
 import prism6.com.infiniteimgur.uilitiy.Resource
 import retrofit2.Response
 import javax.inject.Inject
 
 @Module
-class GalleryRemoteRepository constructor() {
-    suspend fun getGallerys() = getResult { apiService.gallery(Header.header(), "hot", "viral", 0, true) }
+open class RemoteRepository constructor() {
+    @Inject lateinit var apiService: APIService
 
-    val apiService: APIService = mApplication.instance.apiService
+    init {
+        DaggerRepositotyComponent.create().inject(this)
+    }
 
     protected suspend fun <T> getResult(call: suspend () -> Response<T>): Resource<T> {
         try {

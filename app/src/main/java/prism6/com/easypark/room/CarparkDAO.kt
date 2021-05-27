@@ -1,11 +1,8 @@
-package prism6.com.infiniteimgur.room
+package prism6.com.easypark.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import prism6.com.easypark.model.CarParkInfo
-import prism6.com.easypark.model.CarparkVacancy
-import prism6.com.infiniteimgur.model.GalleryModel
-import prism6.com.infiniteimgur.model.Image
 
 @Dao
 interface CarparkDAO {
@@ -21,12 +18,4 @@ interface CarparkDAO {
 
     @Query("SELECT * FROM CarPark")
     fun getDetails() : LiveData<List<CarParkInfo>>
-
-    @Transaction
-    @Query("SELECT * FROM CarPark WHERE park_id =:id")
-    fun getCarparkVacancy(id: String?) : LiveData<CarparkVacancy>
-
-    @Transaction
-    @Query("SELECT * FROM CarPark")
-    fun getCarparkVacancys() : LiveData<List<CarparkVacancy>>
 }

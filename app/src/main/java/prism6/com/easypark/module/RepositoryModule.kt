@@ -2,25 +2,25 @@ package prism6.com.easypark.module
 
 import dagger.Module
 import dagger.Provides
-import prism6.com.infiniteimgur.repository.GalleryLocalRepository
-import prism6.com.infiniteimgur.repository.GalleryRemoteRepository
-import prism6.com.infiniteimgur.repository.GalleryRepository
+import prism6.com.easypark.repository.CarparkLocalRepository
+import prism6.com.easypark.repository.CarparkRemoteRepository
+import prism6.com.easypark.repository.CarparkRepository
 import javax.inject.Singleton
 
 @Module
 class RepositoryModule {
     @Singleton
     @Provides
-    fun provideRemoteRepository() = GalleryRemoteRepository()
+    fun provideRemoteRepository() = CarparkRemoteRepository()
 
     @Singleton
     @Provides
-    fun provideLocalepository() = GalleryLocalRepository()
+    fun provideLocalepository() = CarparkLocalRepository()
 
     @Singleton
     @Provides
-    fun provideRepository(galleryRemoteRepository: GalleryRemoteRepository,
-                          galleryLocalRepository: GalleryLocalRepository
+    fun provideRepository(galleryRemoteRepository: CarparkRemoteRepository,
+                          galleryLocalRepository: CarparkLocalRepository
     ) =
-        GalleryRepository(galleryRemoteRepository, galleryLocalRepository)
+        CarparkRepository(galleryRemoteRepository, galleryLocalRepository)
 }

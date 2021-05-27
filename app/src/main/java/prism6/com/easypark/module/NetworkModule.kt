@@ -1,13 +1,10 @@
-package prism6.com.infiniteimgur.module
+package prism6.com.easypark.module
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import prism6.com.infiniteimgur.network.APIService
-import prism6.com.infiniteimgur.repository.GalleryLocalRepository
-import prism6.com.infiniteimgur.repository.GalleryRemoteRepository
-import prism6.com.infiniteimgur.repository.GalleryRepository
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton

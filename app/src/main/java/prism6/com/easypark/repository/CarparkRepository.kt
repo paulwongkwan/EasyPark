@@ -1,4 +1,4 @@
-package prism6.com.infiniteimgur.repository
+package prism6.com.easypark.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
@@ -7,14 +7,14 @@ import kotlinx.coroutines.Dispatchers
 import prism6.com.infiniteimgur.uilitiy.Resource
 import javax.inject.Inject
 
-class GalleryRepository @Inject constructor(
-    private val galleryRemoteRepository: GalleryRemoteRepository,
-    private val galleryLocalRepository: GalleryLocalRepository
+class CarparkRepository @Inject constructor(
+    private val carparkRemoteRepository: CarparkRemoteRepository,
+    private val carparkLocalRepository: CarparkLocalRepository
 ) {
-    fun getGallerys() = get(
-        db = { galleryLocalRepository.getGallerys() },
-        call = { galleryRemoteRepository.getGallerys() },
-        result = { galleryLocalRepository.insertAll(it.data) }
+    fun getCarPark() = get(
+        db = {carparkLocalRepository.getAllCarpark()},
+        call = {carparkRemoteRepository.getAll()},
+        result = {carparkLocalRepository.insertAllCarpark(it.car_park)}
     )
 }
 
