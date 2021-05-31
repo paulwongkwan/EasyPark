@@ -1,5 +1,6 @@
 package prism6.com.easypark.model
 
+import android.location.Location
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
@@ -36,4 +37,15 @@ data class CarParkInfo(
     val website_sc: String,
     val website_tc: String,
     var vehicle_type: List<VehicleType>?
-)
+){
+    fun location() : Location{
+        var location = Location("EasyCarPark")
+        location.latitude = latitude
+        location.longitude = longitude
+        return location
+    }
+
+    fun distanceTo(location: Location) : Float {
+        return location().distanceTo(location)
+    }
+}

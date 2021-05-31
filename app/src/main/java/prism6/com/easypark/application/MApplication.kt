@@ -1,4 +1,4 @@
-package prism6.com.easypark
+package prism6.com.easypark.application
 
 import android.app.Application
 import com.facebook.stetho.Stetho

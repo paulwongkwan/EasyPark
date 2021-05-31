@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
-import prism6.com.easypark.mApplication
+import prism6.com.easypark.application.mApplication
 import prism6.com.easypark.model.CarParkInfo
 import prism6.com.easypark.model.CarParkStatus
 import prism6.com.easypark.room.CarParkDB

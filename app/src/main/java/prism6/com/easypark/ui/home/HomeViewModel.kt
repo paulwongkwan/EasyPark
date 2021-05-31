@@ -46,6 +46,7 @@ class HomeViewModel : ViewModel() {
                 Glide.with(view.context)
                     .load(carParkInfo.carpark_photo.replace("http:", "https:"))
                     .placeholder(R.drawable.placeholder)
+                    .centerCrop()
                     .into(view)
             }catch (e : Exception){
             }

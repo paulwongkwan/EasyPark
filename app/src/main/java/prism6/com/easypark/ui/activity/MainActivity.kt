@@ -1,12 +1,17 @@
-package prism6.com.easypark
+package prism6.com.easypark.ui.activity
 
 import android.os.Bundle
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.hjq.permissions.OnPermissionCallback
+import com.hjq.permissions.Permission
+import com.hjq.permissions.XXPermissions
+import prism6.com.easypark.R
 import prism6.com.easypark.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
