@@ -12,14 +12,16 @@ class CarparkRemoteRepository : RemoteRepository() {
         var carpark = getCarPark()
         var vacancy = getVacancy()
 
-        var carparkinfo = carpark.data!!.car_park
-        var vacancyinfo = vacancy.data!!.car_park
+        var carparkinfo = carpark.data?.car_park
+        var vacancyinfo = vacancy.data?.car_park
 
-        for(c in carparkinfo){
-            var tmp = vacancyinfo.find { it.park_id.equals(c.park_id) }
+        if(carparkinfo != null && vacancyinfo != null) {
+            for (c in carparkinfo) {
+                var tmp = vacancyinfo.find { it.park_id.equals(c.park_id) }
 
-            if(tmp!=null)
-                c.vehicle_type = tmp.vehicle_type
+                if (tmp != null)
+                    c.vehicle_type = tmp.vehicle_type
+            }
         }
 
         return carpark;

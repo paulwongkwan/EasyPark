@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.libraries.maps.CameraUpdateFactory
+import com.google.android.libraries.maps.GoogleMap
+import com.google.android.libraries.maps.OnMapReadyCallback
+import com.google.android.libraries.maps.SupportMapFragment
+import com.google.android.libraries.maps.model.LatLng
+import io.nlopez.smartlocation.SmartLocation
 import prism6.com.easypark.R
 import prism6.com.easypark.databinding.FragmentDashboardBinding
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var dashboardViewModel: DashboardViewModel
     private var _binding: FragmentDashboardBinding? = null
@@ -19,6 +23,7 @@ class DashboardFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    lateinit var mapFragment: SupportMapFragment
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,15 +36,30 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        mapFragment = childFragmentManager
+            .findFragmentById(R.id.gmap) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+
         return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onMapReady(googleMap: GoogleMap?) {
+        googleMap?.moveCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                LatLng(
+                    SmartLocation.with(context).location().lastLocation!!.latitude,
+                    SmartLocation.with(context).location().lastLocation!!.longitude
+                ),
+                15f
+            )
+        )
+
+        googleMap?.apply {
+        }
     }
 }

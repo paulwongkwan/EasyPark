@@ -4,6 +4,12 @@ plugins {
     id 'kotlin-kapt'
 }
 
+Properties properties = new Properties()
+if (rootProject.file("local.properties").exists()) {
+    properties.load(rootProject.file("local.properties").newDataInputStream())
+}
+def mapsApiKey = properties.getProperty("MAPS_API_KEY", "")
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -16,6 +22,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue "string", "maps_api_key", mapsApiKey
     }
 
     buildTypes {
@@ -79,12 +87,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
-    def big_version = "1.8.0"
-    implementation "com.github.piasy:BigImageViewer:$big_version"
-    implementation "com.github.piasy:GlideImageLoader:$big_version"
-    implementation "com.github.piasy:ProgressPieIndicator:$big_version"
-    implementation "com.github.piasy:GlideImageViewFactory:$big_version"
-
     def location_version = "3.3.3"
     implementation "io.nlopez.smartlocation:library:$location_version"
     implementation "io.nlopez.smartlocation:rx:$location_version"
@@ -96,4 +98,9 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxjava:3.0.6'
     implementation "io.reactivex.rxjava3:rxkotlin:3.0.1"
 
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.google.maps.android:maps-ktx:3.0.1'
+
+    implementation 'com.google.android.libraries.maps:maps:3.1.0-beta'
+    implementation 'com.google.maps.android:android-maps-utils-v3:1.3.1'
 }

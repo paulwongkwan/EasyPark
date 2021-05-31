@@ -2,8 +2,6 @@ package prism6.com.easypark.application
 
 import android.app.Application
 import com.facebook.stetho.Stetho
-import com.github.piasy.biv.BigImageViewer
-import com.github.piasy.biv.loader.glide.GlideImageLoader
 
 class mApplication: Application() {
     companion object {
@@ -16,7 +14,5 @@ class mApplication: Application() {
         instance = this
 
         Stetho.initializeWithDefaults(this);
-
-        BigImageViewer.initialize(GlideImageLoader.with(this));
     }
 }

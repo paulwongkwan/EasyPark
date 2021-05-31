@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
@@ -28,6 +29,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     lateinit var loadingBox: View
     lateinit var recyclerView: RecyclerView
+    lateinit var swipeRefreshLayout: SwipeRefreshLayout
     var adapter: HomeAdapter? = null
 
     // This property is only valid between onCreateView and
@@ -42,15 +44,14 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        loadingBox = binding.loadingBox
+        binding.viewModel = homeViewModel
         recyclerView = binding.fullscreenContent
+        swipeRefreshLayout = binding.homeRefresh
+
+        swipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener { fetchCarpark() })
 
         homeViewModel.isLoading.observe(viewLifecycleOwner, {
-            if (it) {
-                loadingBox.visibility = View.VISIBLE
-            } else {
-                loadingBox.visibility = View.GONE
-            }
+            swipeRefreshLayout.setRefreshing(it)
         })
 
         XXPermissions.with(this)
