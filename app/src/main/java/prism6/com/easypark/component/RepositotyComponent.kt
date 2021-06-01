@@ -4,6 +4,7 @@ import dagger.Component
 import prism6.com.easypark.module.NetworkModule
 import prism6.com.easypark.module.RepositoryModule
 import prism6.com.easypark.repository.RemoteRepository
+import prism6.com.easypark.ui.dashboard.DashboardViewModel
 import prism6.com.easypark.ui.home.HomeViewModel
 import javax.inject.Singleton
 
@@ -12,4 +13,5 @@ import javax.inject.Singleton
 interface RepositotyComponent {
     fun inject(remoteRepository: RemoteRepository)
     fun inject(homeViewModel: HomeViewModel)
+    fun inject(dashboardViewModel: DashboardViewModel)
 }

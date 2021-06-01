@@ -11,6 +11,7 @@ import com.google.android.libraries.maps.GoogleMap
 import com.google.android.libraries.maps.OnMapReadyCallback
 import com.google.android.libraries.maps.SupportMapFragment
 import com.google.android.libraries.maps.model.LatLng
+import com.google.android.libraries.maps.model.MarkerOptions
 import io.nlopez.smartlocation.SmartLocation
 import prism6.com.easypark.R
 import prism6.com.easypark.databinding.FragmentDashboardBinding
@@ -58,6 +59,19 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
                 15f
             )
         )
+
+        dashboardViewModel.carpark.observe(this, {
+            if(it.data != null) {
+                it.data!!.forEach {
+                    val pos = LatLng(it.latitude, it.longitude)
+                    googleMap!!.addMarker(
+                        MarkerOptions()
+                            .position(pos)
+                            .title(it.name_tc)
+                    )
+                }
+            }
+        })
 
         googleMap?.apply {
         }
