@@ -1,6 +1,9 @@
 package prism6.com.easypark.ui.home
 
+import android.app.Activity
+import android.app.ActivityOptions
 import android.content.ContextWrapper
+import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +16,7 @@ import prism6.com.easypark.R
 import prism6.com.easypark.component.DaggerRepositotyComponent
 import prism6.com.easypark.model.CarParkInfo
 import prism6.com.easypark.repository.CarparkRepository
+import prism6.com.easypark.ui.activity.CarparkDetailActivity
 import prism6.com.infiniteimgur.uilitiy.Resource
 import javax.inject.Inject
 
@@ -26,16 +30,18 @@ class HomeViewModel : ViewModel() {
         carpark = repository.getCarPark()
     }
 
-    fun getVacancy(carParkInfo: CarParkInfo) : String {
-        try{
-            var str = ""
-            for(c in carParkInfo.vehicle_type!!){
-                str += c.type + ": " + c.service_category[0].vacancy + " (" + c.service_category[0].category + ")\n"
-            }
-            return str.trim()
-        }catch (e : java.lang.Exception){
-            return "0"
-        }
+    fun openDetail(view: View, carParkInfo: CarParkInfo){
+        view.transitionName = "open_detail"
+        val activity = view.context as Activity
+
+        val intent = Intent(activity, CarparkDetailActivity::class.java)
+        intent.putExtra("park_id", carParkInfo.park_id)
+        val options = ActivityOptions.makeSceneTransitionAnimation(
+            activity,
+            view,
+            "open_detail"
+        )
+        activity.startActivity(intent, options.toBundle())
     }
 
     companion object {

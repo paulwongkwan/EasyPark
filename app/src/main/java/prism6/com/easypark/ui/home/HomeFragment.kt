@@ -27,7 +27,6 @@ class HomeFragment : Fragment() {
 
     val homeViewModel: HomeViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
-    lateinit var loadingBox: View
     lateinit var recyclerView: RecyclerView
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
     var adapter: HomeAdapter? = null

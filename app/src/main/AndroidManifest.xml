@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="prism6.com.easypark">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".application.mApplication"
@@ -13,7 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyPark">
         <activity
-            android:name="prism6.com.easypark.ui.activity.MainActivity"
+            android:name=".ui.activity.CarparkDetailActivity"
+            android:label="@string/title_activity_carpark_detail"
+            android:theme="@style/Theme.EasyPark.NoActionBar"></activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,9 +29,9 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/maps_api_key" />
     </application>
+
 </manifest>

@@ -48,4 +48,29 @@ data class CarParkInfo(
     fun distanceTo(location: Location) : Float {
         return location().distanceTo(location)
     }
+
+    fun getInfo() : String{
+        try{
+            var str = getVacancy()
+            str += "\n\n" + displayAddress_tc +
+                    "\n\n" + remark_tc +
+                    "\n\n" + website_tc
+
+            return str.trim()
+        }catch (e : java.lang.Exception){
+            return "0"
+        }
+    }
+
+    fun getVacancy() : String {
+        try{
+            var str = ""
+            for(c in vehicle_type!!){
+                str += c.type + ": " + c.service_category[0].vacancy + " (" + c.service_category[0].category + ")\n"
+            }
+            return str.trim()
+        }catch (e : java.lang.Exception){
+            return "0"
+        }
+    }
 }

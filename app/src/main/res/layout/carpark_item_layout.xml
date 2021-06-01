@@ -16,7 +16,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{(view) -> viewModel.openDetail(view, CarParkInfo)}">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -69,7 +70,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="3dp"
-                        android:text="@{viewModel.getVacancy(CarParkInfo)}"
+                        android:text="@{CarParkInfo.getVacancy()}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

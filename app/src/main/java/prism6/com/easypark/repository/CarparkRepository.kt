@@ -16,6 +16,8 @@ class CarparkRepository @Inject constructor(
         call = {carparkRemoteRepository.getAll()},
         result = {carparkLocalRepository.insertAllCarpark(it.car_park)}
     )
+
+    fun getCarParkDetail(id : String) = carparkLocalRepository.getCarpark(id)
 }
 
 fun <T, A> get(
